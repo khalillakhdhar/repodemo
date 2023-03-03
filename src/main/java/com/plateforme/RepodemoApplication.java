@@ -1,6 +1,7 @@
 package com.plateforme;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,7 +29,7 @@ public class RepodemoApplication implements CommandLineRunner {
 		Utilisateur us2=new Utilisateur(0, "user2", "username2", "user2@gmail.com", "userpassword2");
 		userapi.createUtilisateur(us);
 		userapi.createUtilisateur(us2);
-		userapi.showUtilisateurs().forEach(user->{
+		/*userapi.showUtilisateurs().forEach(user->{
 			System.out.println(user.toString());
 		});
 		us2.setNom("khalil");
@@ -38,6 +39,12 @@ List<Utilisateur> users3=userapi.findByNom("khalil");
 users3.forEach(users->{
 	System.out.println("user found by name: "+users);
 });
+*/
+	Optional<Utilisateur> user=userapi.authentifier( "user@gmail.com", "userpassword");
+	if(user.isEmpty())
+		System.out.println("no user found");
+	else
+	System.out.println(user.toString());
 	}
 
 }

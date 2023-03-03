@@ -1,6 +1,7 @@
 package com.plateforme.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,12 @@ public class UtilisateurService implements UtilisateurDao {
 	public List<Utilisateur> findByNom(String nom) {
 		// TODO Auto-generated method stub
 		return utilisateurRepository.findByNom(nom);
+	}
+
+	@Override
+	public Optional<Utilisateur> authentifier(String email, String password) {
+		// TODO Auto-generated method stub
+		return utilisateurRepository.findByEmailAndPassword(email, password);
 	}
 
 }
